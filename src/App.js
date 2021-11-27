@@ -16,20 +16,6 @@ function App() {
     isCompleted: false
   })
 
-   
-
-  /*const handleChangeCheck = (position) =>{
-     console.log('qwe')
-    console.log(items)
-    
-    const updatedCheckedState = items.map((item, index) =>
-      index === position ? !item.isCompleted : item.isCompleted
-    )
-     console.log('qwe2')
-    console.log(updatedCheckedState)
-    setCheckedState(updatedCheckedState);
-  }*/
-
   const handleChange = e =>{
     const {name, value, type, checked} = e.target
     setItemSelected(prevState => ({
@@ -41,8 +27,7 @@ function App() {
   }
 
   const peticionGet = async() => {
-  //async function peticionGet() {
-
+  
     await fetch(baseUrl)
       .then(res => res.json())
       .then(
@@ -79,24 +64,6 @@ function App() {
       )
 
   }
-
-  /*function handleChangeCheck(id) {
-    console.log('handleChangeCheck')
-    console.log(id)
-    let updatedItems = items.map(item => {
-      if (item.id === id) {
-        item.isCompleted = !item.isCompleted;
-        setItemSelected({ 
-          id: item.id,
-          title: item.title,
-          isCompleted: item.isCompleted})
-      }
-      return item;
-    });
-    console.log('ItemSelected')
-    console.log(itemSelected)
-    //setItems(updatedItems);
-  };*/
 
   function handleChangeCheck(i) {
     const temporaryItems = [...items];
@@ -138,8 +105,7 @@ function App() {
   }
 
   const peticionDelete = async(e,id) => {
-  //async function peticionDelete() {
-    
+      
     await fetch(baseUrl + id, {
       method: 'delete'
       })
@@ -152,9 +118,7 @@ function App() {
           console.log('There has been a problem with your delete operation: ', error.message);
         }
       )
-
   }
-
 
   function seleccionarItem (item) {
     setItemSelected(item);
