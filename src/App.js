@@ -132,7 +132,7 @@ function App() {
   
   return (
     <div className="App">
-    <div className="main">
+    <div className="main container">
 
       <h1> To-Do List </h1>
       <br /><br />
@@ -151,7 +151,7 @@ function App() {
                 
               <td>                          
                 <input type="hidden" name="id" id="id" onChange={handleChange} value={itemSelected.id} /> 
-                <input type="checkbox" 
+                <input className="form-check-input" type="checkbox" 
                     name={item.title}  id={`custom-checkbox-${index}`}
                     checked={item.isCompleted}
                     onChange={() => handleChangeCheck(index)}
@@ -161,9 +161,11 @@ function App() {
                 {item.title}
               </td>   
               <td> 
-                <button className="btn btn-primary" onClick={()=>{seleccionarItem(item); setModalEditar(true)}}> Edit </button>
+                <div className="btn-group" >
+                  <button className="btn btn-primary" onClick={()=>{seleccionarItem(item); setModalEditar(true)}}> Edit </button>
                 
-                <button className="btn btn-danger" onClick={(event) => {window.confirm("Are you sure?") && peticionDelete(event, item.id)}}> Remove </button>
+                  <button className="btn btn-danger" onClick={(event) => {window.confirm("Are you sure?") && peticionDelete(event, item.id)}}> Remove </button>
+                </div>
               </td>
             </tr>
           )
@@ -172,11 +174,12 @@ function App() {
       </table>
 
       <br />
-      <input type="text" name="title" id="title" onChange={handleChange} placeholder="New Task" />
-      <button className="btn btn-success" onClick={()=>peticionPost()}>
-          Add
-      </button>
-
+      <div className="input-group mb-3">
+        <input className="form-control" type="text" name="title" id="title" onChange={handleChange} placeholder="New Task" />
+        <button className="btn btn-success" style={{width:"100px"}} onClick={()=>peticionPost()}>
+            Add
+        </button>
+      </div>
     </div>
 
 
