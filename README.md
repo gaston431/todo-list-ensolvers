@@ -25,7 +25,9 @@ Instructions to run app:
 			-mysql -u root -e "CREATE DATABASE IF NOT EXISTS todo_list_ensolvers;" (create database named todo_list_ensolvers)
 			-php artisan migrate (create database tables)
 			-php artisan serve (start server)
-		url api: http://localhost:8000/api/items
+		url api: http://localhost:8000/api/folders
+				 http://localhost:8000/api/items
+
 	Frontend App:
 		In different folder run: git clone -b frontendReact https://github.com/gaston431/todo-list-ensolvers.git
 		Run batch file script_frontend.bat (for Windows), if not work run:
