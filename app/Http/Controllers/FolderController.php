@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item;
+use App\Models\Folder;
 
-class ItemController extends Controller
+class FolderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,13 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $folders = Folder::all();
+        return $folders;
+    }
+    
+    public function getItems(Request $request)
+    {
+        $items = Folder::findOrFail($request->id)->items;
         return $items;
     }
 
@@ -36,14 +42,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new Item();
-        $item->title = $request->title;
-        $item->isCompleted = $request->isCompleted;
-        $item->folder_id = $request->folder_id;
+        $folder = new Folder();
+        $folder->name = $request->name;
 
-        $item->save();
+        $folder->save();
         
-        return $item;
+        return $folder;
     }
 
     /**
@@ -75,15 +79,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $item = Item::findOrFail($request->id);
-        $item->title = $request->title;
-        $item->isCompleted = $request->isCompleted;
-
-        $item->save();
-
-        return $item;
+        //
     }
 
     /**
@@ -94,7 +92,7 @@ class ItemController extends Controller
      */
     public function destroy(Request $request)
     {
-        $item = Item::destroy($request->id);
-        return $item;
+        $folder = Folder::destroy($request->id);
+        return $folder;
     }
 }
